@@ -13,31 +13,24 @@ namespace LibraryMVC.Controllers
     {
         private libraryManagementEntities db = new libraryManagementEntities();
 
-        // GET: Auht
+        // GET: Auth
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(user user)
+        public ActionResult Login(user user, string returnUrl)
         {
-            var userInDb = db.users.FirstOrDefault(x => x.name == user.name && x.password == user.password);
-            var adminInDb = db.admins.FirstOrDefault(x => x.name == user.name && x.password == user.password);
-            if (userInDb != null)
+            var userInDb = db.users.Any(x => x.name == user.name && x.password == user.password);
+            var adminInDb = db.admins.Any(x => x.name == user.name && x.password == user.password);
+            if (userInDb || adminInDb)
             {
-                //Roles.CreateRole("user");
-                //if (!Roles.IsUserInRole(user.name, "user"))
-                //    Roles.AddUserToRole(user.name, "user");
                 FormsAuthentication.SetAuthCookie(user.name, false);
-                return RedirectToAction("Index", "Home");
-            }
-            else if (adminInDb != null)
-            {
-                //Roles.CreateRole("admin");
-                //if (!Roles.IsUserInRole(user.name, "admin"))
-                //    Roles.AddUserToRole(user.name, "admin");
-                FormsAuthentication.SetAuthCookie(user.name, false);
+                //if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                //{
+                //    return Redirect(returnUrl);
+                //}
                 return RedirectToAction("Index", "Home");
             }
             else
