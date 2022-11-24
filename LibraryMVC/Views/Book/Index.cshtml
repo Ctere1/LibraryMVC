@@ -13,10 +13,18 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @if ("admin" == User.Identity.Name)
+        {
+            <div class="form-group">
+                @Html.ActionLink("Create New Book", "Create", "Book", new { @class = "btn btn-primary" })
+            </div>
+        }
     </p>
     <table class="table">
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.name)
             </th>
@@ -33,16 +41,7 @@
                 @Html.DisplayNameFor(model => model.authorName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.description)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.isActive)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.issuedFrom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.issuedTo)
             </th>
             <th></th>
         </tr>
@@ -50,6 +49,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.name)
                 </td>
@@ -66,26 +68,16 @@
                     @Html.DisplayFor(modelItem => item.authorName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.description)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.isActive)
-                </td>
+                </td>  
                 <td>
-                    @Html.DisplayFor(modelItem => item.issuedFrom)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.issuedTo)
-                </td>
-                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" })
+
                     @if ("admin" == User.Identity.Name)
                     {
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) @(" | ")
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id }) @(" | ");
+                        @(" | ")@Html.ActionLink("Edit", "Edit", new { id = item.id }, new { @class = "btn btn-primary" }) @(" | ")
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
                     }
-
-                    @Html.ActionLink("Details", "Details", new { id = item.id })
-
                 </td>
             </tr>
         }

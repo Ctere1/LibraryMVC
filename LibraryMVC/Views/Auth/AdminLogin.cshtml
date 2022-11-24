@@ -19,9 +19,11 @@
                         @ViewBag.Message
                         @using (Html.BeginForm("AdminLogin", "Auth", FormMethod.Post))
                         {
+                            @("Admin Name")
                             <div class="form-group">
-                                <input name="name" type="text" placeholder="Admin Name" class="form-group" />
+                                <input name="name" type="text" placeholder="Name" class="form-group" />
                             </div>
+                            @("Password")
                             <div class="form-group">
                                 <input name="password" type="password" placeholder="Password" class="form-group" />
                             </div>
