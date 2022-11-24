@@ -15,12 +15,14 @@ namespace LibraryMVC.Controllers
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: Book
+        [Authorize(Roles = "admin,user")]
         public ActionResult Index()
         {
             return View(db.books.ToList());
         }
 
         // GET: Book/Details/5
+        [Authorize(Roles = "admin,user")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: Book/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -59,6 +62,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: Book/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,6 +94,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: Book/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
