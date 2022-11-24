@@ -22,11 +22,10 @@ namespace LibraryMVC.Controllers
         [HttpPost]
         public ActionResult Login(user user, string returnUrl)
         {
-            var userInDb = db.users.Any(x => x.name == user.name && x.password == user.password);
-            var adminInDb = db.admins.Any(x => x.name == user.name && x.password == user.password);
-            if (userInDb || adminInDb)
+            var userInDb = db.users.Any(x => x.email == user.email && x.password == user.password); 
+            if (userInDb)
             {
-                FormsAuthentication.SetAuthCookie(user.name, false);
+                FormsAuthentication.SetAuthCookie(user.email, false);
                 //if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
                 //{
                 //    return Redirect(returnUrl);
@@ -35,7 +34,25 @@ namespace LibraryMVC.Controllers
             }
             else
             {
-                ViewBag.Message = "Invalid user name or password.";
+                ViewBag.Message = "Invalid user email or password.";
+                return View();
+            }
+        }
+        public ActionResult AdminLogin(admin admin)
+        {
+            var adminInDb = db.admins.Any(x => x.name == admin.name && x.password == admin.password);
+            if (adminInDb)
+            {
+                FormsAuthentication.SetAuthCookie(admin.name, false);
+                //if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/") && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                //{
+                //    return Redirect(returnUrl);
+                //}
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ViewBag.Message = "Invalid admin name or password.";
                 return View();
             }
         }

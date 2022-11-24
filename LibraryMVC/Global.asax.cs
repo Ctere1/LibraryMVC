@@ -35,9 +35,18 @@ namespace LibraryMVC
 
                         using (libraryManagementEntities db = new libraryManagementEntities())
                         {
-                            user user = db.users.SingleOrDefault(u => u.name == username);
-                            admin admin = db.admins.SingleOrDefault(u => u.name == username);
-                            roles = "user;admin";
+                            var user = db.users.Any(u => u.email == username);
+                            var admin = db.admins.Any(a => a.name == username);
+                            if (user)
+                            {
+                                roles = "user";
+                            }
+                            else if (admin)
+                            {
+                                roles = "admin";
+
+                            }
+                
                         }
                         //let us extract the roles from our own custom cookie
 

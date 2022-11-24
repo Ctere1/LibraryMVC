@@ -1,0 +1,98 @@
+﻿@model LibraryMVC.Models.book
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>book</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.genre)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.genre)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.language)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.language)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.publisherName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.publisherName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.authorName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.authorName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.isActive)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.isActive)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.issuedFrom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.issuedFrom)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.issuedTo)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.issuedTo)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
