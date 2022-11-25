@@ -156,7 +156,7 @@ namespace LibraryMVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "user")]
-        public ActionResult Borrow([Bind(Include = "id,issuedFrom,issuedTo")] book book)
+        public ActionResult Borrow([Bind(Include = "id,issuedTo")] book book)
         {
             string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
             user user = db.users.FirstOrDefault(u => u.email == username);
@@ -165,8 +165,13 @@ namespace LibraryMVC.Controllers
             if (ModelState.IsValid)
             {
                 existingBook.isActive = false;
-                existingBook.issuedFrom = book.issuedFrom;
+                existingBook.issuedFrom = DateTime.Now;
                 existingBook.issuedTo = book.issuedTo;
+                if (book.issuedTo == null || book.issuedTo < DateTime.Now)
+                {
+                    ViewBag.Message = "Issued To must be greater than '" + DateTime.Now.ToString("MM/dd/yyyy") + "'";
+                    return View();
+                }
                 existingBook.borrowedBy = user.email;
                 db.Entry(existingBook).State = EntityState.Modified;
                 db.SaveChanges();
@@ -209,7 +214,7 @@ namespace LibraryMVC.Controllers
                 existingBook.borrowedBy = null;
                 db.Entry(existingBook).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyBooks");
             }
             return View(existingBook);
         }

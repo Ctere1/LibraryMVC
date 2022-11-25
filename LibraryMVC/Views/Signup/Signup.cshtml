@@ -8,17 +8,20 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Signup</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal" align="center">
-            <h4>Signup</h4>
-            <hr />
+        <div class="form-horizontal">
+            <h4 align="center">Signup</h4>
+          
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -49,8 +52,17 @@
                     <input type="submit" value="Signup" class="btn btn-primary" />
                 </div>
             </div>
+            <br />
+            <div class="container" style="background-color:#f1f1f1">
+                <span class="psw">You have an <a href="#">@Html.ActionLink("account?", "Login", "Auth")</a></span>
+            </div>
         </div>
     }
-
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Library</p>
+        </footer>
+    </div>
 </body>
 </html>

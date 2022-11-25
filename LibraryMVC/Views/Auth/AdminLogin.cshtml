@@ -7,11 +7,14 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Login</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <table border="1" align="center">
+    <table align="center">
         <tr>
             <td>
                 <div class="text-center">
@@ -30,6 +33,7 @@
                             <input type="submit" class="btn btn-primary" value="Login">
                         }
                     </div>
+                    <br />
                     <div class="container" style="background-color:#f1f1f1">
                         <span class="psw">Login as <a href="#">@Html.ActionLink("user", "Login", "Auth")</a></span>
                     </div>
@@ -37,6 +41,14 @@
             </td>
         </tr>
     </table>
+
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Library</p>
+        </footer>
+    </div>
+
 </body>
 </html>
 
