@@ -27,6 +27,7 @@
           <Property Name="isActive" Type="bit" Nullable="false" />
           <Property Name="issuedFrom" Type="datetime" />
           <Property Name="issuedTo" Type="datetime" />
+          <Property Name="borrowedBy" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -36,7 +37,6 @@
           <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
-          <Property Name="books" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="libraryManagementModelStoreContainer">
           <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
@@ -70,6 +70,7 @@
           <Property Name="isActive" Type="Boolean" Nullable="false" />
           <Property Name="issuedFrom" Type="DateTime" Precision="3" />
           <Property Name="issuedTo" Type="DateTime" Precision="3" />
+          <Property Name="borrowedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -79,7 +80,6 @@
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="books" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="libraryManagementEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="admins" EntityType="Self.admin" />
@@ -114,6 +114,7 @@
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="issuedFrom" ColumnName="issuedFrom" />
                 <ScalarProperty Name="issuedTo" ColumnName="issuedTo" />
+                <ScalarProperty Name="borrowedBy" ColumnName="borrowedBy" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -124,7 +125,6 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="books" ColumnName="books" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

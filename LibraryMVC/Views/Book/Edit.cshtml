@@ -15,13 +15,13 @@
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="form-horizontal">
             <h4>Edit the Book</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.id)
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -29,7 +29,7 @@
                     @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.genre, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -37,7 +37,7 @@
                     @Html.ValidationMessageFor(model => model.genre, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.language, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -45,7 +45,7 @@
                     @Html.ValidationMessageFor(model => model.language, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.publisherName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -53,7 +53,7 @@
                     @Html.ValidationMessageFor(model => model.publisherName, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.authorName, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -61,7 +61,7 @@
                     @Html.ValidationMessageFor(model => model.authorName, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -69,7 +69,7 @@
                     @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.isActive, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.issuedFrom, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -87,7 +87,7 @@
                     @Html.ValidationMessageFor(model => model.issuedFrom, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.issuedTo, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -95,7 +95,15 @@
                     @Html.ValidationMessageFor(model => model.issuedTo, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.borrowedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.borrowedBy, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.borrowedBy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-success" />
@@ -103,7 +111,7 @@
             </div>
         </div>
     }
-    
+
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>

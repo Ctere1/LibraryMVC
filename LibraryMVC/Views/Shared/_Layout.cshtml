@@ -21,7 +21,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @if ("admin" != User.Identity.Name)
+                    {
+                        <li>@Html.ActionLink("My Books", "MyBooks", "Book")</li>
+                    }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if ("admin" == User.Identity.Name)
                     {

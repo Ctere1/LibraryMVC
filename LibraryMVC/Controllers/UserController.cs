@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using LibraryMVC.Models;
 
 namespace LibraryMVC.Controllers
@@ -47,7 +48,7 @@ namespace LibraryMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name,email,password,books")] user user)
+        public ActionResult Create([Bind(Include = "id,name,email,password")] user user)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +80,7 @@ namespace LibraryMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name,email,password,books")] user user)
+        public ActionResult Edit([Bind(Include = "id,name,email,password")] user user)
         {
             if (ModelState.IsValid)
             {
@@ -114,6 +115,15 @@ namespace LibraryMVC.Controllers
             db.users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        // GET: User/Books/userId
+        public ActionResult Books(int? id)
+        {
+            user user = db.users.Find(id);
+            var books = db.books.Where(b => b.borrowedBy == user.email);
+
+          return View(books.ToList());
         }
 
         protected override void Dispose(bool disposing)

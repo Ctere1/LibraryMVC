@@ -69,9 +69,13 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.isActive)
-                </td>  
+                </td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" })
+                    @if (item.isActive && "admin" != User.Identity.Name)
+                    {
+                        @(" | ")@Html.ActionLink("Borrow", "Borrow", new { id = item.id }, new { @class = "btn btn-warning" })
+                    }
 
                     @if ("admin" == User.Identity.Name)
                     {

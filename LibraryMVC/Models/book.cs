@@ -24,5 +24,6 @@ namespace LibraryMVC.Models
         public bool isActive { get; set; }
         public Nullable<System.DateTime> issuedFrom { get; set; }
         public Nullable<System.DateTime> issuedTo { get; set; }
+        public string borrowedBy { get; set; }
     }
 }
