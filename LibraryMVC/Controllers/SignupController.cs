@@ -32,7 +32,7 @@ namespace LibraryMVC.Controllers
                 ViewBag.Message = "Fill the fields";
                 return View();
             }
-            var userInDb = db.users.Any(x => x.email == user.email && x.password == user.password);
+            var userInDb = db.users.Any(x => x.email == user.email);
             if (!userInDb)
             {
                 db.users.Add(user);
