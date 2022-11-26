@@ -21,14 +21,19 @@ namespace LibraryMVC.Controllers
         {
             return View();
         }
-       
+
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Signup([Bind(Include = "id,name,email,password")] user user)
+        public ActionResult Signup([Bind(Include = "name,email,password")] user user)
         {
-            if (ModelState.IsValid)
+            if (user.email == null || user.password == null || user.name == null)
+            {
+                ViewBag.Message = "Fill the fields";
+                return View();
+            }
+            var userInDb = db.users.Any(x => x.email == user.email && x.password == user.password);
+            if (!userInDb)
             {
                 db.users.Add(user);
                 db.SaveChanges();
@@ -37,10 +42,9 @@ namespace LibraryMVC.Controllers
             }
             else
             {
-                ViewBag.Message = "Invalid process.";
+                ViewBag.Message = "User already exist";
                 return View();
             }
-
 
         }
 

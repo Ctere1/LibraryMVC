@@ -38,6 +38,13 @@ namespace LibraryMVC.Controllers
                 return View();
             }
         }
+
+        public ActionResult AdminLogin()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult AdminLogin(admin admin)
         {
             var adminInDb = db.admins.Any(x => x.name == admin.name && x.password == admin.password);

@@ -14,10 +14,12 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <h4 class="text-center">Login</h4>
+    <hr />
     <table align="center">
         <tr>
             <td>
-                <div class="text-center">
+                <divclass class="text-center">
                     <div class="container">
                         @ViewBag.Message
                         @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
@@ -40,7 +42,7 @@
                     <div class="container" style="background-color:#f1f1f1">
                         <span class="psw">Login as <a href="#">@Html.ActionLink("admin", "AdminLogin", "Auth")</a></span>
                     </div>
-                </div>
+                    </div>
             </td>
         </tr>
     </table>

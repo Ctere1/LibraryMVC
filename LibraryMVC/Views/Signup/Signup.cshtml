@@ -15,49 +15,38 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4 align="center">Signup</h4>
-          
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            @ViewBag.Message
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Signup" class="btn btn-primary" />
-                </div>
-            </div>
-            <br />
-            <div class="container" style="background-color:#f1f1f1">
-                <span class="psw">You have an <a href="#">@Html.ActionLink("account?", "Login", "Auth")</a></span>
-            </div>
-        </div>
-    }
+    <h4 class="text-center">Signup</h4>
+    <hr />
+    <table align="center">
+        <tr>
+            <td>
+                <divclass class="text-center">
+                    <div class="container">
+                        @ViewBag.Message
+                        @using (Html.BeginForm("Signup", "Signup", FormMethod.Post))
+                        {
+                            @("User Name")
+                            <div class="form-group">
+                                <input name="name" type="text" placeholder="Name" class="form-group" />
+                            </div>
+                            @("User Email")
+                            <div class="form-group">
+                                <input name="email" type="text" placeholder="Email" class="form-group" />
+                            </div>
+                            @("Password")
+                            <div class="form-group">
+                                <input name="password" type="password" placeholder="Password" class="form-group" />
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Signup">
+                        }
+                    </div>
+                    <br />
+                    <div class="container" style="background-color:#f1f1f1">
+                        <span class="psw">You have an <a href="#">@Html.ActionLink("account?", "Login", "Auth")</a></span>
+                    </div>
+            </td>
+        </tr>
+    </table>
     <div class="container body-content">
         <hr />
         <footer>
