@@ -18,34 +18,27 @@
             <div class="col-md-6">
                 <h2>Book information</h2>
                 <p>
-                    @Html.ActionLink("Due Date Expired Books", "DueDateExpired", "Book")
+                    See   @Html.ActionLink("Due Date Expired Books", "DueDateExpired", "Book")
                 </p>
-                <p><img src="~/Home/MakeBookChart" /> </p>
+                <p><img src="~/Home/MakeBookChartAdmin" /> </p>
             </div>
             <div class="col-md-4">
                 <h2>User information</h2>
                 <p>
-                    @Html.ActionLink("Users", "Index", "User")
+                    See   @Html.ActionLink("Users", "Index", "User")
                 </p>
-                <p><img src="~/Home/MakeUserChart" /> </p>
+                <p><img src="~/Home/MakeUserChartAdmin" /> </p>
             </div>
         }
         else
         {
             <div class="col-md-6">
-                <h2> My due date expired books</h2>
+                <h2>Book information</h2>
                 <p>
-                    Please see the My Books tab
+                    See @Html.ActionLink("My Books", "MyBooks", "Book")
                 </p>
-                <p><img src="~/Home/MakeDueDateChart" /> </p>
+                <p><img src="~/Home/MakeBookChartUser" /> </p>
 
-            </div>
-            <div class="col-md-4">
-                <h2>My borrowed Books</h2>
-                <p>
-                    Please see the My Books tab
-                </p>
-                <p><img src="~/Home/MakeMyBooksCountChart" /> </p>
             </div>
         }
 

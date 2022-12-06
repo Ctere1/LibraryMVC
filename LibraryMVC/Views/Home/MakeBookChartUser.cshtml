@@ -6,10 +6,10 @@
 
 @{
     var myChart = new Chart(width: 550, height: 400, theme: ChartTheme.Blue)
-        .AddTitle("Due Date Expired Books")
+        .AddTitle("My Books")
         .AddSeries(chartType: "Column",
             name: "Books",
-            xValue: new[] { "Due Date Expired Books" },
+            xValue: new[] { "Borrowed Books", "Due Date Expired Books" },
             yValues: Model)
          .Write();
 }

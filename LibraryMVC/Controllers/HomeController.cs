@@ -20,7 +20,7 @@ namespace LibraryMVC.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public ActionResult MakeBookChart()
+        public ActionResult MakeBookChartAdmin()
         {
             var activeBooks = db.books.Where(b => b.isActive == true).Count();
             var dueDateExpiredBooks = db.books.Where(b => b.issuedTo < DateTime.Now).Count();
@@ -31,7 +31,7 @@ namespace LibraryMVC.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        public ActionResult MakeUserChart()
+        public ActionResult MakeUserChartAdmin()
         {
             var allUsers = db.users.Count();
             var model = new[] { allUsers.ToString() };
@@ -40,23 +40,13 @@ namespace LibraryMVC.Controllers
         }
 
         [Authorize(Roles = "user")]
-        public ActionResult MakeDueDateChart()
-        {
-            string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-            var dueDateExpiredBooks = db.books.Where(b => b.borrowedBy == username && b.issuedTo < DateTime.Now).Count();
-
-            var model = new[] { dueDateExpiredBooks.ToString() };
-
-            return View(model);
-        }
-
-        [Authorize(Roles = "user")]
-        public ActionResult MakeMyBooksCountChart()
+        public ActionResult MakeBookChartUser()
         {
             string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
             var myBooks = db.books.Where(b => b.borrowedBy == username).Count();
+            var dueDateExpiredBooks = db.books.Where(b => b.borrowedBy == username && b.issuedTo < DateTime.Now).Count();
 
-            var model = new[] { myBooks.ToString() };
+            var model = new[] { myBooks.ToString(), dueDateExpiredBooks.ToString() };
 
             return View(model);
         }

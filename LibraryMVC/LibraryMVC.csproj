@@ -232,10 +232,9 @@
     <Content Include="Views\Book\Borrow.cshtml" />
     <Content Include="Views\Book\Return.cshtml" />
     <Content Include="Views\User\Books.cshtml" />
-    <Content Include="Views\Home\MakeBookChart.cshtml" />
-    <Content Include="Views\Home\MakeUserChart.cshtml" />
-    <Content Include="Views\Home\MakeDueDateChart.cshtml" />
-    <Content Include="Views\Home\MakeMyBooksCountChart.cshtml" />
+    <Content Include="Views\Home\MakeBookChartAdmin.cshtml" />
+    <Content Include="Views\Home\MakeUserChartAdmin.cshtml" />
+    <Content Include="Views\Home\MakeBookChartUser.cshtml" />
     <Content Include="Views\Book\DueDateExpired.cshtml" />
   </ItemGroup>
   <ItemGroup>
