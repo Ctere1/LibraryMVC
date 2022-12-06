@@ -29,7 +29,17 @@
                         <li>@Html.ActionLink("Users", "Index", "User")</li>
                     }
                     <li>@Html.ActionLink("Books", "Index", "Book")</li>
-                    <li>@Html.ActionLink("Logout", "Logout", "Auth", new { area = "" }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if ("admin" != User.Identity.Name)
+                    {
+                        <li>@Html.ActionLink(@User.Identity.Name + " | Profile", "UserProfile", "User")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink(@User.Identity.Name + " | Profile", "AdminProfile", "Admin")</li>
+                    }
+                    <li class="active">@Html.ActionLink("Logout", "Logout", "Auth")</li>
                 </ul>
             </div>
         </div>

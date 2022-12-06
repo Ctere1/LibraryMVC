@@ -11,18 +11,19 @@ using LibraryMVC.Models;
 
 namespace LibraryMVC.Controllers
 {
-    [Authorize(Roles = "admin")]
     public class UserController : Controller
     {
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: User
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.users.ToList());
         }
 
         // GET: User/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +39,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: User/Create
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace LibraryMVC.Controllers
         // POST: User/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,name,email,password")] user user)
@@ -61,6 +64,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: User/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,6 +84,7 @@ namespace LibraryMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit([Bind(Include = "id,name,email,password")] user user)
         {
             if (ModelState.IsValid)
@@ -92,6 +97,7 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: User/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,6 +115,7 @@ namespace LibraryMVC.Controllers
         // POST: User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             user user = db.users.Find(id);
@@ -118,12 +125,51 @@ namespace LibraryMVC.Controllers
         }
 
         // GET: User/Books/userId
+        [Authorize(Roles = "admin")]
         public ActionResult Books(int? id)
         {
             user user = db.users.Find(id);
             var books = db.books.Where(b => b.borrowedBy == user.email);
 
-          return View(books.ToList());
+            return View(books.ToList());
+        }
+
+        // GET: User/UserProfile
+        [Authorize(Roles = "user")]
+        public ActionResult UserProfile()
+        {
+            string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            if (username == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            user user = db.users.FirstOrDefault(u => u.email == username);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        // POST: User/UserProfile/
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "user")]
+        public ActionResult UserProfile([Bind(Include = "id,name,password")] user user)
+        {
+            user existingUser = db.users.Find(user.id);
+            if (ModelState.IsValid)
+            {
+                existingUser.name = user.name;
+                existingUser.password = user.password;
+                db.Entry(existingUser).State = EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "User updated";
+                //return RedirectToAction("UserProfile");
+            }
+            return View(existingUser);
         }
 
         protected override void Dispose(bool disposing)

@@ -202,9 +202,6 @@ namespace LibraryMVC.Controllers
         [Authorize(Roles = "admin,user")]
         public ActionResult Return([Bind(Include = "id")] book book)
         {
-            string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-            user user = db.users.FirstOrDefault(u => u.email == username);
-
             book existingBook = db.books.Find(book.id);
             if (ModelState.IsValid)
             {
