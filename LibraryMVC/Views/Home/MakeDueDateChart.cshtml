@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Make Due Date Expired Books Chart";
+}
+
+@{
+    var myChart = new Chart(width: 550, height: 400, theme: ChartTheme.Blue)
+        .AddTitle("Due Date Expired Books")
+        .AddSeries(chartType: "Column",
+            name: "Books",
+            xValue: new[] { "Due Date Expired Books" },
+            yValues: Model)
+         .Write();
+}

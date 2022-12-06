@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<LibraryMVC.Models.book>
 
 @{
-    ViewBag.Title = "My Books";
+    ViewBag.Title = "Due Date Expired";
 }
 
 <!DOCTYPE html>
@@ -9,11 +9,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>DueDateExpired</title>
 </head>
 <body>
-    <p>
-    </p>
     <table class="table">
         <tr>
             <th>
@@ -28,18 +26,18 @@
             <th>
                 @Html.DisplayNameFor(model => model.issuedTo)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.borrowedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isActive)
+            </th>
             <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
-            string dueDateExpiredStyle = "";
-            if (@DateTime.Now > item.issuedTo)
-            {
-                dueDateExpiredStyle = "background-color:#FF0000";
-            }
-
-            <tr style=@dueDateExpiredStyle>
+            <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.id)
                 </td>
@@ -53,8 +51,15 @@
                     @Html.DisplayFor(modelItem => item.issuedTo)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" }) |
-                    @Html.ActionLink("Return", "Return", new { id = item.id }, new { @class = "btn btn-success" })
+                    @Html.DisplayFor(modelItem => item.borrowedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.id, controller = "Book", action = "Details" }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id, controller = "Book", action = "Edit" }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id, controller = "Book", action = "Delete" }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

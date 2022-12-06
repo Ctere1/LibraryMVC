@@ -219,6 +219,15 @@ namespace LibraryMVC.Controllers
             return View(existingBook);
         }
 
+        // GET: Book/DueDateExpired
+        [Authorize(Roles = "admin")]
+        public ActionResult DueDateExpired()
+        {
+            var dueDateExpiredBooks = db.books.Where(b => b.issuedTo < DateTime.Now);
+
+            return View(dueDateExpiredBooks.ToList());
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

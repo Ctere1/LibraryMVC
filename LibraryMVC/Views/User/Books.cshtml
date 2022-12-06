@@ -33,7 +33,12 @@
 
         @foreach (var item in Model)
         {
-            <tr>
+            string dueDateExpiredStyle = "";
+            if (@DateTime.Now > item.issuedTo)
+            {
+                dueDateExpiredStyle = "background-color:#FF0000";
+            }
+            <tr style=@dueDateExpiredStyle>
                 <td>
                     @Html.DisplayFor(modelItem => item.id)
                 </td>

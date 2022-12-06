@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Make Book Chart";
+}
+
+@{
+    var myChart = new Chart(width: 550, height: 400, theme: ChartTheme.Blue)
+        .AddTitle("Books")
+        .AddSeries(chartType: "Column",
+            name: "Books",
+            xValue: new[] { "All Books", "Active Books", "Due Date Expired Books" },
+            yValues: Model)
+         .Write();
+}

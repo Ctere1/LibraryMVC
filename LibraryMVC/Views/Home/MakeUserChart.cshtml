@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Make User Chart";
+}
+
+@{
+    var myChart = new Chart(width: 550, height: 400, theme: ChartTheme.Blue)
+        .AddTitle("Users")
+        .AddSeries(chartType: "Column",
+            name: "Users",
+            xValue: new[] { "All Users" },
+            yValues: Model)
+         .Write();
+}
