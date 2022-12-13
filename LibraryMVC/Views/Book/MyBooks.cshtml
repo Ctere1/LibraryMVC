@@ -12,8 +12,14 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-    </p>
+    <form asp-controller="BookController" asp-action="Index" method="get">
+        <br />
+
+        <p>
+            Name: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <table class="table">
         <tr>
             <th>

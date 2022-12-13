@@ -32,22 +32,6 @@ namespace LibraryMVC.Controllers
             return View(db.logs.ToList());
         }
 
-        // GET: Log/Details/5
-        [Authorize(Roles = "admin,user")]
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            log log = db.logs.Find(id);
-            if (log == null)
-            {
-                return HttpNotFound();
-            }
-            return View(log);
-        }
-
         [Authorize(Roles = "admin")]
         // GET: Log/Delete/5
         public ActionResult Delete(int? id)

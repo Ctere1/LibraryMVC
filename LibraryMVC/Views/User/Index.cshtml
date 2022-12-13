@@ -12,11 +12,17 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
+    <form asp-controller="BookController" asp-action="Index" method="get">
+        <br />
         <div class="form-group">
             @Html.ActionLink("Create New User", "Create", "User", new { @class = "btn btn-primary" })
         </div>
-    </p>
+        <p>
+            Name: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
     <table class="table">
         <tr>
             <th>
@@ -53,7 +59,7 @@
                     @Html.DisplayFor(modelItem => item.password)
                 </td>
                 <td>
-                    @Html.ActionLink("Books", "Books", new { id = item.id }, new { @class = "btn btn-link" }) 
+                    @Html.ActionLink("Books", "Books", new { id = item.id }, new { @class = "btn btn-link" })
                 </td>
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" }) |

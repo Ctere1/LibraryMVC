@@ -12,14 +12,25 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
+    <form asp-controller="BookController" asp-action="Index" method="get">
+        <br />
         @if ("admin" == User.Identity.Name)
         {
             <div class="form-group">
                 @Html.ActionLink("Create New Book", "Create", "Book", new { @class = "btn btn-primary" })
             </div>
         }
-    </p>
+        <p>
+
+            <select asp-for="BookGenre" asp-items="Model.Genre">
+                <option value="">All</option>
+            </select>
+
+            Name: <input type="text" asp-for="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
     <table class="table">
         <tr>
             <th>

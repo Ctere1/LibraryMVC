@@ -12,13 +12,20 @@
     <title>Admin Log</title>
 </head>
 <body>
-    <p>
-
-    </p>
+    <br />
+    <form asp-controller="LogController" asp-action="Index">
+        <p>
+            Email: <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user_email)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.time)
@@ -36,13 +43,15 @@
                     @Html.DisplayFor(modelItem => item.id)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.user_email)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.time)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.message)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
