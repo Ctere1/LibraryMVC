@@ -54,4 +54,20 @@ namespace LibraryMVC.Models
             public string password { get; set; }
         }
     }
+
+    [MetadataType(typeof(logMetadata))]
+    public partial class log
+    {
+        public class logMetadata
+        {
+            [DisplayName("ID")]
+            public int id { get; set; }
+            [DisplayName("User")]
+            public int user_email { get; set; }
+            [DisplayName("Message")]
+            public string message { get; set; }
+            [DisplayName("Time")]
+            public string time { get; set; }
+        }
+    }
 }

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<LibraryMVC.Models.log>
+
+@{
+    ViewBag.Title = "User Logs";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User Log</title>
+</head>
+<body>
+    <p>
+
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.message)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr style="background-color:#bebebe">
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.message)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>
+</html>

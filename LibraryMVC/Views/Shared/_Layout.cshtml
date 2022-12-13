@@ -29,6 +29,15 @@
                         <li>@Html.ActionLink("Users", "Index", "User")</li>
                     }
                     <li>@Html.ActionLink("Books", "Index", "Book")</li>
+                    @if ("admin" == User.Identity.Name)
+                    {
+                        <li>@Html.ActionLink("Logs", "AdminLog", "Log")</li>
+                    }
+                    @if ("admin" != User.Identity.Name)
+                    {
+                        <li>@Html.ActionLink("Logs", "UserLog", "Log")</li>
+                    }
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if ("admin" != User.Identity.Name)

@@ -27,6 +27,7 @@ namespace LibraryMVC.Models
     
         public virtual DbSet<admin> admins { get; set; }
         public virtual DbSet<book> books { get; set; }
+        public virtual DbSet<log> logs { get; set; }
         public virtual DbSet<user> users { get; set; }
     }
 }

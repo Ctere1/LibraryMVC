@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using LibraryMVC.HelperMethods;
 using LibraryMVC.Models;
 
 namespace LibraryMVC.Controllers
 {
     public class UserController : Controller
     {
+        LogHelper helper = new LogHelper();
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: User
@@ -59,7 +61,7 @@ namespace LibraryMVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            helper.InsertLog(user.email, "User: " + user.email + " created");
             return View(user);
         }
 
@@ -93,6 +95,7 @@ namespace LibraryMVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            helper.InsertLog(user.email, "User: " + user.email + " edited");
             return View(user);
         }
 
@@ -121,6 +124,7 @@ namespace LibraryMVC.Controllers
             user user = db.users.Find(id);
             db.users.Remove(user);
             db.SaveChanges();
+            helper.InsertLog(user.email, "User: " + user.email + " deleted");
             return RedirectToAction("Index");
         }
 
@@ -167,6 +171,7 @@ namespace LibraryMVC.Controllers
                 db.Entry(existingUser).State = EntityState.Modified;
                 db.SaveChanges();
                 ViewBag.Message = "User updated";
+                helper.InsertLog(existingUser.email, "User: " + existingUser.email + " updated");
                 //return RedirectToAction("UserProfile");
             }
             return View(existingUser);

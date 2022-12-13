@@ -9,12 +9,14 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using LibraryMVC.HelperMethods;
 using LibraryMVC.Models;
 
 namespace LibraryMVC.Controllers
 {
     public class BookController : Controller
     {
+        LogHelper helper = new LogHelper();
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: Book
@@ -175,8 +177,9 @@ namespace LibraryMVC.Controllers
                 existingBook.borrowedBy = user.email;
                 db.Entry(existingBook).State = EntityState.Modified;
                 db.SaveChanges();
+                helper.InsertLog(user.email, "User borrowed Book: " + existingBook.name);
                 return RedirectToAction("Index");
-            }
+            }        
             return View(existingBook);
         }
 
@@ -202,6 +205,7 @@ namespace LibraryMVC.Controllers
         [Authorize(Roles = "admin,user")]
         public ActionResult Return([Bind(Include = "id")] book book)
         {
+            string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
             book existingBook = db.books.Find(book.id);
             if (ModelState.IsValid)
             {
@@ -211,6 +215,7 @@ namespace LibraryMVC.Controllers
                 existingBook.borrowedBy = null;
                 db.Entry(existingBook).State = EntityState.Modified;
                 db.SaveChanges();
+                helper.InsertLog(username, "User returned Book: " + existingBook.name);
                 return RedirectToAction("MyBooks");
             }
             return View(existingBook);

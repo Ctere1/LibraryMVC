@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using LibraryMVC.HelperMethods;
 using LibraryMVC.Models;
 
 namespace LibraryMVC.Controllers
@@ -14,6 +15,7 @@ namespace LibraryMVC.Controllers
     [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
+        LogHelper helper = new LogHelper();
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: Admin/AdminProfile
@@ -45,6 +47,7 @@ namespace LibraryMVC.Controllers
                 db.SaveChanges();
                 ViewBag.Message = "Admin updated";
             }
+            helper.InsertLog(admin.name, "Admin updated");
             return View(admin);
         }
         protected override void Dispose(bool disposing)

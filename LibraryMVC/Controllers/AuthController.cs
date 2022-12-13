@@ -1,4 +1,5 @@
-﻿using LibraryMVC.Models;
+﻿using LibraryMVC.HelperMethods;
+using LibraryMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace LibraryMVC.Controllers
     [AllowAnonymous]
     public class AuthController : Controller
     {
+        LogHelper helper = new LogHelper();
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: Auth
@@ -22,7 +24,7 @@ namespace LibraryMVC.Controllers
         [HttpPost]
         public ActionResult Login(user user, string returnUrl)
         {
-            var userInDb = db.users.Any(x => x.email == user.email && x.password == user.password); 
+            var userInDb = db.users.Any(x => x.email == user.email && x.password == user.password);
             if (userInDb)
             {
                 FormsAuthentication.SetAuthCookie(user.email, false);
@@ -30,6 +32,7 @@ namespace LibraryMVC.Controllers
                 //{
                 //    return Redirect(returnUrl);
                 //}
+                helper.InsertLog(user.email, "User logged in");
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -55,6 +58,7 @@ namespace LibraryMVC.Controllers
                 //{
                 //    return Redirect(returnUrl);
                 //}
+                helper.InsertLog(admin.name, "Admin logged in");
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -66,6 +70,8 @@ namespace LibraryMVC.Controllers
 
         public ActionResult Logout()
         {
+            string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
+            helper.InsertLog(username, "User logged out");
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }

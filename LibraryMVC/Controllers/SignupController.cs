@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using LibraryMVC.HelperMethods;
 using LibraryMVC.Models;
 
 namespace LibraryMVC.Controllers
@@ -14,6 +15,7 @@ namespace LibraryMVC.Controllers
     [AllowAnonymous]
     public class SignupController : Controller
     {
+        LogHelper helper = new LogHelper();
         private libraryManagementEntities db = new libraryManagementEntities();
 
         // GET: Signup
@@ -38,6 +40,7 @@ namespace LibraryMVC.Controllers
                 db.users.Add(user);
                 db.SaveChanges();
                 FormsAuthentication.SetAuthCookie(user.email, false);
+                helper.InsertLog(user.email, "User signed up");
                 return RedirectToAction("Index", "Home");
             }
             else
