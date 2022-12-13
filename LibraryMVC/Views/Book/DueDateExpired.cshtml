@@ -12,6 +12,13 @@
     <title>DueDateExpired</title>
 </head>
 <body>
+    <br />
+    @using (Html.BeginForm("DueDateExpired", "Book", FormMethod.Get))
+    {
+        <p>
+            @("Name: ") @Html.TextBox("searchString") <input type="submit" value="Filter" />
+        </p>
+    }
     <table class="table">
         <tr>
             <th>

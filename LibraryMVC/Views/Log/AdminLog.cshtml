@@ -13,12 +13,12 @@
 </head>
 <body>
     <br />
-    <form asp-controller="LogController" asp-action="Index">
+    @using (Html.BeginForm("AdminLog", "Log", FormMethod.Get))
+    {
         <p>
-            Email: <input type="text" name="SearchString" />
-            <input type="submit" value="Filter" />
+            @("User: ") @Html.TextBox("searchString") <input type="submit" value="Filter" />
         </p>
-    </form>
+    }
     <table class="table">
         <tr>
             <th>

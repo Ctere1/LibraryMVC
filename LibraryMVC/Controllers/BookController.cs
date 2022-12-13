@@ -21,9 +21,17 @@ namespace LibraryMVC.Controllers
 
         // GET: Book
         [Authorize(Roles = "admin,user")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.books.ToList());
+            if (searchString == null)
+            {
+                return View(db.books.ToList());
+            }
+            else
+            {
+                var books = db.books.Where(b => b.name.Contains(searchString) || searchString == null);
+                return View(books);
+            }
         }
 
         // GET: Book/Details/5
@@ -130,12 +138,20 @@ namespace LibraryMVC.Controllers
 
         // GET: Book/MyBooks/5
         [Authorize(Roles = "user")]
-        public ActionResult MyBooks()
+        public ActionResult MyBooks(string searchString)
         {
             string username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-            var books = db.books.Where(b => b.borrowedBy == username);
 
-            return View(books.ToList());
+            if (searchString == null)
+            {
+                var books = db.books.Where(b => b.borrowedBy == username);
+                return View(books.ToList());
+            }
+            else
+            {
+                var books = db.books.Where(b => b.name.Contains(searchString) && b.borrowedBy == username);
+                return View(books);
+            }
         }
 
         // GET: Book/Borrow/5
@@ -179,7 +195,7 @@ namespace LibraryMVC.Controllers
                 db.SaveChanges();
                 helper.InsertLog(user.email, "User borrowed Book: " + existingBook.name);
                 return RedirectToAction("Index");
-            }        
+            }
             return View(existingBook);
         }
 
@@ -223,11 +239,19 @@ namespace LibraryMVC.Controllers
 
         // GET: Book/DueDateExpired
         [Authorize(Roles = "admin")]
-        public ActionResult DueDateExpired()
+        public ActionResult DueDateExpired(string searchString)
         {
-            var dueDateExpiredBooks = db.books.Where(b => b.issuedTo < DateTime.Now);
+            if (searchString == null)
+            {
+                var dueDateExpiredBooks = db.books.Where(b => b.issuedTo < DateTime.Now);
 
-            return View(dueDateExpiredBooks.ToList());
+                return View(dueDateExpiredBooks.ToList());
+            }
+            else
+            {
+                var books = db.books.Where(b => b.name.Contains(searchString) && b.issuedTo < DateTime.Now);
+                return View(books);
+            }
         }
 
         protected override void Dispose(bool disposing)

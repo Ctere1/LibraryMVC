@@ -12,14 +12,13 @@
     <title>Index</title>
 </head>
 <body>
-    <form asp-controller="BookController" asp-action="Index" method="get">
-        <br />
-
+    <br />
+    @using (Html.BeginForm("MyBooks", "Book", FormMethod.Get))
+    {
         <p>
-            Name: <input type="text" asp-for="SearchString" />
-            <input type="submit" value="Filter" />
+            @("Name: ") @Html.TextBox("searchString") <input type="submit" value="Filter" />
         </p>
-    </form>
+    }
     <table class="table">
         <tr>
             <th>

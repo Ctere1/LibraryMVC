@@ -27,9 +27,18 @@ namespace LibraryMVC.Controllers
 
         [Authorize(Roles = "admin")]
         // GET: Log
-        public ActionResult AdminLog()
+        public ActionResult AdminLog(string searchString)
         {
-            return View(db.logs.ToList());
+            if (searchString == null)
+            {
+                return View(db.logs.ToList());
+            }
+            else
+            {
+                var logs = db.logs.Where(b => b.user_email.Contains(searchString) || searchString == null);
+                return View(logs);
+            }
+
         }
 
         [Authorize(Roles = "admin")]

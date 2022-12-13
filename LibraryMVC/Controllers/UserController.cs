@@ -19,9 +19,17 @@ namespace LibraryMVC.Controllers
 
         // GET: User
         [Authorize(Roles = "admin")]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.users.ToList());
+            if (searchString == null)
+            {
+                return View(db.users.ToList());
+            }
+            else
+            {
+                var users = db.users.Where(b => b.name.Contains(searchString) || searchString == null);
+                return View(users);
+            }
         }
 
         // GET: User/Details/5
