@@ -13,7 +13,7 @@
 ## ℹ️ Introduction
 Library application that you can manage the books and it's users using Microsoft's MVC architecture. It has 2 panels which are `Admin` and `User`. 
 
-It uses **MS-SQL** | **EntityFramework** on DB side. Authentication and authorization processes are performed using web cookies (aspNet form-auth).
+It uses **MS-SQL** | **EntityFramework** on DB side. Authentication and authorization processes are performed using `Web Cookies` (aspNet form-auth).
 
 | Admin Actions                               | User Actions                       |                                     
 | :----------------------------------------   | :-------------------------------   |        
