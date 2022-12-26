@@ -38,29 +38,70 @@ $ cd LibraryMVC
 
 ## 🪟Screenshots
 ### **Login-Signup Pages**
->![ss1](https://user-images.githubusercontent.com/62745858/208377241-e6f69926-6e47-43ee-8243-ab43cc6c1ca9.png)
-![ss2](https://user-images.githubusercontent.com/62745858/208377244-46e82e5a-9d17-4f58-8a61-b11cc3b467ca.png)
-![ss3](https://user-images.githubusercontent.com/62745858/208377236-033cc98c-44d8-4b03-8e04-b100d8c8033e.png)
+> * User can login on this page.
+>
+>   ![Screenshot_20221226_032707](https://user-images.githubusercontent.com/62745858/209548931-5e1b52e7-7585-4937-bf5e-19db82124885.png)
+>
+> * User can signup on this page.
+>
+>   ![ss2](https://user-images.githubusercontent.com/62745858/208377244-46e82e5a-9d17-4f58-8a61-b11cc3b467ca.png)
+>
+> * Admin can login on this page.
+>
+>   ![ss3](https://user-images.githubusercontent.com/62745858/208377236-033cc98c-44d8-4b03-8e04-b100d8c8033e.png)
 
 ### **User Pages**
->![user1](https://user-images.githubusercontent.com/62745858/208377113-98f4e78f-d3f3-4987-9af1-9a4d4316cd84.png)
-![user2](https://user-images.githubusercontent.com/62745858/208377114-de644782-29b1-477d-99f9-f3775211a394.png)
-![user3](https://user-images.githubusercontent.com/62745858/208377116-4211df21-221c-45f0-9287-0cd45ccf678d.png)
-![user4](https://user-images.githubusercontent.com/62745858/208377104-9fd1cc11-156f-4ece-a068-358aefc2686f.png)
-![user5](https://user-images.githubusercontent.com/62745858/208377109-43c0f13c-c14b-443d-85fc-b6a9d266dbcd.png)
-![user6](https://user-images.githubusercontent.com/62745858/208377112-5144dcd0-3c48-42a3-b042-4d20eecd10c8.png)
+> * User can see information about all **own** books in a table on this page (e.g. borrowed books and due date expired books).
+>
+>   ![user1](https://user-images.githubusercontent.com/62745858/208377113-98f4e78f-d3f3-4987-9af1-9a4d4316cd84.png) 
+>
+> * User can see all **own** book's details on this page (red lines means book's date expired).
+> 
+>   ![user2](https://user-images.githubusercontent.com/62745858/208377114-de644782-29b1-477d-99f9-f3775211a394.png)
+>
+> * User can see all library books and their details. Also user can `Borrow` the books on this page.
+> 
+>   ![user3](https://user-images.githubusercontent.com/62745858/208377116-4211df21-221c-45f0-9287-0cd45ccf678d.png)
+>
+> * For borrowing the book, user can choose a `IssuedTo` date on this page.
+> 
+>   ![user6](https://user-images.githubusercontent.com/62745858/208377112-5144dcd0-3c48-42a3-b042-4d20eecd10c8.png)
+>
+> * User can see all **own** logs and their details on this page.
+> 
+>   ![user4](https://user-images.githubusercontent.com/62745858/208377104-9fd1cc11-156f-4ece-a068-358aefc2686f.png)
+>
+> * User can change **own** account credentials on this page. 
+> 
+>   ![user5](https://user-images.githubusercontent.com/62745858/208377109-43c0f13c-c14b-443d-85fc-b6a9d266dbcd.png)
+
 
 ### **Admin Pages**
->![admin1](https://user-images.githubusercontent.com/62745858/208377186-d93b4b14-1393-4f35-8da6-fdf556577e65.png)
-![admin2](https://user-images.githubusercontent.com/62745858/208377188-80248c8c-e6bd-4e1f-8ef1-3bd9c5e9c79a.png)
-![admin3](https://user-images.githubusercontent.com/62745858/208377192-8f489250-31be-47c3-afff-4c7e34d8ab8c.png)
-![admin4](https://user-images.githubusercontent.com/62745858/208377195-c88763c9-b453-4bab-9c05-3466041d06a4.png)
-![admin5](https://user-images.githubusercontent.com/62745858/208377180-35838f01-010a-44fe-9b47-b036f57f5d46.png)
+> * Admin can see information about **all** library books and users in a table on this page (e.g. all books, due date expired books, active books, all users).
+>
+>   ![admin1](https://user-images.githubusercontent.com/62745858/208377186-d93b4b14-1393-4f35-8da6-fdf556577e65.png)
+>
+> * Admin can `Edit`, `Create` and `Delete` information about **all** library users. Also admin can see user's books on this page.
+>
+>   ![admin2](https://user-images.githubusercontent.com/62745858/208377188-80248c8c-e6bd-4e1f-8ef1-3bd9c5e9c79a.png)
+>
+> * Admin can `Edit`, `Create` and `Delete` information about **all** library books on this page.
+>
+>   ![admin3](https://user-images.githubusercontent.com/62745858/208377192-8f489250-31be-47c3-afff-4c7e34d8ab8c.png)
+>
+> * Admin can see and `Delete` **all** auth logs on this page.
+>
+>   ![admin4](https://user-images.githubusercontent.com/62745858/208377195-c88763c9-b453-4bab-9c05-3466041d06a4.png)
+>
+> * Admin can change **own** account credentials on this page. 
+>
+>   ![admin5](https://user-images.githubusercontent.com/62745858/208377180-35838f01-010a-44fe-9b47-b036f57f5d46.png)
+
 
 ## 📝Credits
 
 This software uses the following packages:
 
 - Microsoft.AspNet.Mvc
-- bootstrap
+- Bootstrap
 - EntityFramework
