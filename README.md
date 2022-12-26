@@ -22,7 +22,7 @@
 </div>
 
 ## ℹ️ Introduction
-Library application that you can manage the books and it's users using Microsoft's MVC architecture. It has 2 panels which are `Admin` and `User`. 
+Library application that you can manage the books and it's users using Microsoft's ASP-NET MVC architecture. It has 2 panels which are `Admin` and `User`. 
 
 It uses **MS-SQL** | **EntityFramework** on DB side. Authentication and authorization processes are performed using `Web Cookies` (aspNet form-auth).
 
