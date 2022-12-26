@@ -106,6 +106,9 @@ This software uses the following packages:
 - Bootstrap
 - EntityFramework
 
+## ©License
+![GitHub](https://img.shields.io/github/license/Ctere1/LibraryMVC)
+
 ## 📌Contributors
 
 <a href="https://github.com/Ctere1/">
