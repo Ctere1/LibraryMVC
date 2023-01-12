@@ -18,9 +18,9 @@
 
 <div align="center">
 
-![GitHub Repo stars](https://img.shields.io/github/stars/Ctere1/LibraryMVC?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Ctere1/LibraryMVC?style=social)
-![GitHub watchers](https://img.shields.io/github/watchers/Ctere1/LibraryMVC?style=social)
+![GitHub Repo stars](https://img.shields.io/github/stars/Ctere1/LibraryMVC)
+![GitHub forks](https://img.shields.io/github/forks/Ctere1/LibraryMVC)
+![GitHub watchers](https://img.shields.io/github/watchers/Ctere1/LibraryMVC)
 
 </div>
 
@@ -121,7 +121,7 @@ This software uses the following packages:
 - EntityFramework
 
 ## ©License
-![GitHub](https://img.shields.io/github/license/Ctere1/LibraryMVC)
+![GitHub](https://img.shields.io/github/license/Ctere1/LibraryMVC?style=flat-square)
 
 ```
 Copyright (c) 2022 Cemil TAN
